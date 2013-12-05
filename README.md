@@ -103,15 +103,15 @@ Draft
 * In summary if you think only stub based approach is not sufficient for the test case then do a `verify`.
 * Instead of using `verify` with `times(0)` use `never()` or use `verifyZeroInteractions`
   [See More ...](http://docs.mockito.googlecode.com/hg/latest/org/mockito/Mockito.html#never_verification)
-## Equals Builder
-* You can use `EqualsBuilder.reflectionEquals` to comapre two objects in test instead of comapring field by field.
-* [See More on EqualsBuilder](http://commons.apache.org/proper/commons-lang/javadocs/api-2.6/org/apache/commons/lang/builder/EqualsBuilder.html)
 
 ## Mockito Spy
 
 * [Read documentation here]("http://docs.mockito.googlecode.com/hg/latest/org/mockito/Mockito.html#spy")
 * [Spying on superclass]("http://stackoverflow.com/questions/3467801/mockito-how-to-mock-only-the-call-of-a-method-of-the-superclass")
 
+## Equals Builder
+* You can use `EqualsBuilder.reflectionEquals` to comapre two objects in test instead of comapring field by field.
+* [See More on EqualsBuilder](http://commons.apache.org/proper/commons-lang/javadocs/api-2.6/org/apache/commons/lang/builder/EqualsBuilder.html)
 
 ## Test Data Builder
 
