@@ -116,13 +116,15 @@ Draft
 ## Test Data Builder
 
 * Try to use test data builders as much as possible.
+* instead of creating items like this in every tests,
+
   ```Java
   Item = new Item();
   item.setQuantity(5);
   item.setSKU("123");
   ```
   
-instead of creating items like this in every tests create a separate TestItemBuilder class. This just implements the Builder pattern to create an item.
+ create a separate TestItemBuilder class. This just implements the Builder pattern to create an item.
 
   ```Java
   public class TestItemBuilder{
