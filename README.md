@@ -1,6 +1,4 @@
-# Unit Testing With Mockito
-
-Draft
+# Tools & Techniques for effective unit testing
 
 ## Table Of Contents
 
@@ -34,7 +32,7 @@ Draft
   FeedsProvider feedsProvider;
   @Mock
   InventoryDAO inventoryDAO;
-  // One way to intialize the mock objects is to use MockitoAnnotaion.init(this) before every test runs
+  // One way to intialize the mock objects is to use MockitoAnnotaion.initMocks(this) before every test runs
   
   ```
   Use @InjectMock to do constructor or field based injection for the class under test
@@ -49,21 +47,21 @@ Draft
   //This will set mocked feedsProvider instance for the classThatUsesFeedsProvider
   ```
 
-  [See More ...](http://docs.mockito.googlecode.com/hg/latest/org/mockito/InjectMocks.html)
+  Before proceeding to next please read [this](http://docs.mockito.googlecode.com/hg/latest/org/mockito/InjectMocks.html)
 
 ## Mockito Matchers
 
-* Don't use `any` matchers blindly instead use mockito provided matchers or custom argument matchers.
+* Use appropriate mockito provided matchers or custom argument matchers that are very closely related to the arguments instead of using `any()` matchers. Using `any()` will lead to ineffective mock behaviour as it gives a more generic fault tolerant behaviour, what we need is fail fast.
 
   ```Java
   public List<Feed> fetchFeeds(String userId){
-   FeedRequest feedRequest = new FeedRequest();
-   feedRequest.setUserId(userId);
-   return feedProvider.fetch(feedRequest);
+    FeedRequest feedRequest = new FeedRequest();
+    feedRequest.setUserId(userId);
+    return feedProvider.fetch(feedRequest);
   }
   ```
   
-  In order to create a stub the <i>fetch</i> method above, you can use `refEq` matcher
+  In order to create a stub for the <i>fetch</i> method above, you can use `refEq` matcher
   
   ```Java
   @Mock
@@ -75,7 +73,7 @@ Draft
   
   when(feedProvider.fetch(refEq(feedRequest))).thenReturn(feeds);
   
-  // Don't use any(Feedrequest.class), refEq can be used when equals method is not implemented.
+  // Don't use any(Feedrequest.class), refEq can be used when equals method is not implemented. It uses reflection to match the contents of the objects.
   ```
   
 ## Mockito Verify
@@ -159,6 +157,8 @@ Draft
   ```Java
   Item item = new TestItemBuilder().withQuantity(5).withSKU("sku").build()
   ```
+  
+  [See More...](http://martinfowler.com/bliki/FluentInterface.html)
 
   
 
