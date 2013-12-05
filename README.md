@@ -29,7 +29,7 @@
 
   ```Java
   @Mock
-  FeedsProvider feedsProvider;
+  YouTubeFeedsProvider youTubeFeedsProvider;
   @Mock
   InventoryDAO inventoryDAO;
   // One way to intialize the mock objects is to use MockitoAnnotaion.initMocks(this) before every test runs
@@ -38,13 +38,13 @@
   Use @InjectMock to do constructor or field based injection for the class under test
   ```Java
   @Mock
-  FeedsProvider feedsProvider;
+  YouTubeFeedsProvider youTubeFeedsProvider;
   
   @InjectMock
-  ClassThatUsesFeedsProvider classThatUsesFeedsProvider;
+  ClassThatUsesYouTubeFeedsProvider classThatUsesYouTubeFeedsProvider;
   
   @Before public void initMocks(){MockitoAnnotaion.init(this);}
-  //This will set mocked feedsProvider instance for the classThatUsesFeedsProvider
+  //This will set mocked youTubeFeedsProvider instance for the classThatUsesYouTubeFeedsProvider
   ```
 
   Before proceeding to next please read [this](http://docs.mockito.googlecode.com/hg/latest/org/mockito/InjectMocks.html)
