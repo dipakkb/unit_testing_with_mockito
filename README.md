@@ -14,7 +14,7 @@ Draft
 ## Test Case Naming
 
 * Use consistent naming across the project
-* Don't use names starting with `test`
+* Don't use names starting with <i>test</i>
 * Give meaningful names to your test case based on what behavior you are going to test
 
   ```Java
@@ -48,7 +48,8 @@ Draft
   //This will set mocked feedsProvider instance for the classThatUsesFeedsProvider
   ```
 
-  [See More Detail] http://docs.mockito.googlecode.com/hg/latest/org/mockito/InjectMocks.html
+  [See More ...](http://docs.mockito.googlecode.com/hg/latest/org/mockito/InjectMocks.html)
+
 ## Mockito Matchers
 
 * Don't use `any` matchers blindly instead use mockito provided matchers or custom argument matchers.
@@ -66,7 +67,7 @@ Draft
   ```Java
   @Mock
   feedProvider
-  String userId = 'userId';
+  String userId = "userId";
   List<Feed> feeds = new ArrayList<Feed>();
   FeedRequest feedRequest = new FeedRequest();
   feedRequest.setUserId(userId);
@@ -81,8 +82,8 @@ Draft
 * There is no need to do `verify` a method invocation if the returned value from the stub is calling another method. In this case verify is redundant. Because if the stub is not correct default return value is `null` and method call on that will fail which will fail the test case.
 
   ```Java
-  stateMap = mapService.fetchDataByState('UP');
-  stateMap.locate('ABC');
+  stateMap = mapService.fetchDataByState("UP");
+  stateMap.locate("ABC");
   ```
   There is no need to `verify` that fetchDataByState is invoked. If that does not happen then locate call will fail anyway.
 
@@ -90,19 +91,20 @@ Draft
 * If the returned value of a method is `null` and the subsequent code flow is dependent on `null` check then you should verify that method invocation happened. Because that will help in finding if the test is failing for the incorrect stub.
 
   ```Java
-  stateMap = mapService.fetchDataByState('UP');
+  stateMap = mapService.fetchDataByState("UP");
   if (null != stateMap){
-    stateMap.locate('ABC');
+    stateMap.locate("ABC");
   }
   else{
     //some other thing
   }
   ```
 * In summary if you think only stub based approach is not sufficient for the test case then do a `verify`.
-
+* Instead of using `verify` with `times(0)` use `never()` or use `verifyZeroInteractions`
+  [See More ...](http://docs.mockito.googlecode.com/hg/latest/org/mockito/Mockito.html#never_verification)
 ## Equals Builder
 * You can use `EqualsBuilder.reflectionEquals` to comapre two objects in test instead of comapring field by field.
-* [See More on EqualsBuilder] http://commons.apache.org/proper/commons-lang/javadocs/api-2.6/org/apache/commons/lang/builder/EqualsBuilder.html
+* [See More on EqualsBuilder](http://commons.apache.org/proper/commons-lang/javadocs/api-2.6/org/apache/commons/lang/builder/EqualsBuilder.html)
 
 ## Test Data Builder
 
@@ -110,7 +112,7 @@ Draft
   ```Java
   Item = new Item();
   item.setQuantity(5);
-  item.setSKU('123');
+  item.setSKU("123");
   ```
   
 instead of creating items like this in every tests create a separate TestItemBuilder class. This just implements the Builder pattern to create an item.
@@ -119,7 +121,7 @@ instead of creating items like this in every tests create a separate TestItemBui
   public class TestItemBuilder{
     //default values for the item object
     private int quantity = 2;
-    private String sku = '100';
+    private String sku = "100";
     
     public TestItemBuilder(){
     }
@@ -146,7 +148,7 @@ instead of creating items like this in every tests create a separate TestItemBui
   In your test code you can create item by using the above builder.
   
   ```Java
-  Item item = new TestItemBuilder().withQuantity(5).withSKU('sku').build()
+  Item item = new TestItemBuilder().withQuantity(5).withSKU("sku").build()
   ```
 
   
