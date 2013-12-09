@@ -9,6 +9,7 @@
 * [Mockito Spy] (#mockito-spy)
 * [Equals Builder] (#equals-builder)
 * [Test Data Builders] (#test-data-builders)
+* [Building Mocks] (#building-mocks)
 
 ## Test Case Naming
 
@@ -161,6 +162,8 @@
   
   [See More...](http://martinfowler.com/bliki/FluentInterface.html)
 
+
+## Building Mocks
    
   Builders may also be used to hide the complexity of constructing mocks and setting expectations on them.
   This is especially useful when the object you're trying to build is not a POJO but something like an EJB.
