@@ -179,7 +179,9 @@
   you could flesh out a builder for the same, and use:
   
   ```Java
-  Item item = new TestItemBuilder().withQuantity(5).withSKU("sku").build();
+  Item item = new ItemBuilder()
+             .withQuantity(5)
+             .withSKU("sku").build();
   ```
   
   The mocking and expectation-setting would be abstracted into a bukder:
