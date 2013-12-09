@@ -122,7 +122,7 @@
   item.setSKU("123");
   ```
   
- create a separate TestItemBuilder class. This just implements the Builder pattern to create an item.
+ Create a separate TestItemBuilder class. This just implements the Builder pattern to create an item.
 
   ```Java
   public class TestItemBuilder{
@@ -155,12 +155,59 @@
   In your test code you can create item by using the above builder.
   
   ```Java
-  Item item = new TestItemBuilder().withQuantity(5).withSKU("sku").build()
+  Item item = new TestItemBuilder().withQuantity(5).withSKU("sku").build();
   ```
+ 
   
   [See More...](http://martinfowler.com/bliki/FluentInterface.html)
 
+   
+  Builders may also be used to hide the complexity of constructing mocks and setting expectations on them.
+  This is especially useful when the object you're trying to build is not a POJO but something like an EJB.
   
+  Instead of having the mocks and expectations in your test class (which is quite distracting):
+  
+  ```Java
+  Item item = mock(Item.class);
+  when(item.getQuantity()).thenReturn(5);
+  when(item.getSKU()).thenReturn("sku");
+  ```
+  
+  you could flesh out a builder for the same, and use:
+  
+  ```Java
+  Item item = new TestItemBuilder().withQuantity(5).withSKU("sku").build();
+  ```
+  
+  The mocking and expectation-setting would be abstracted into a bukder:
+  
+  ```Java
+  public class ItemBuilder{
+    //default values for the item object
+    private int quantity = 2;
+    private String sku = "100";
+    
+    public ItemBuilder(){
+    }
+    
+    public ItemBuilder withQuantity(int quantity){
+      this.quantity = quantity;
+      return this;
+    }
+    
+    public ItemBuilder withSKU(String sku){
+      this.sku = sku;
+      return this;
+    }
+    
+    public Item build(){
+      Item item = mock(Item.class);
+      when(item.getQuantity()).thenReturn(quantity);
+      when(item.getSKU()).thenReturn(sku);
+      return item;
+    }
+  }
+  ```
 
 
 
