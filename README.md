@@ -105,8 +105,8 @@
 
 ## Mockito Spy
 
-* [Read documentation here]("http://docs.mockito.googlecode.com/hg/latest/org/mockito/Mockito.html#spy")
-* [Spying on superclass]("http://stackoverflow.com/questions/3467801/mockito-how-to-mock-only-the-call-of-a-method-of-the-superclass")
+* [Read documentation here](http://docs.mockito.googlecode.com/hg/latest/org/mockito/Mockito.html#spy)
+* [Spying on superclass](http://stackoverflow.com/questions/3467801/mockito-how-to-mock-only-the-call-of-a-method-of-the-superclass)
 
 ## Equals Builder
 * You can use `EqualsBuilder.reflectionEquals` to comapre two objects in test instead of comapring field by field.
